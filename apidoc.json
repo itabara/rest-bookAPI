@@ -1,0 +1,15 @@
+{
+  "name": "bookAPI",
+  "version": "0.1.0",
+  "description": "Book Rest API",
+  "title": "Book Rest API",
+  "url" : "https://github.com/itabara/rest-bookAPI",
+  "header": {
+    "title": "My own header title",
+    "filename": "header.md"
+  },
+  "footer": {
+    "title": "My own footer title",
+    "filename": "footer.md"
+  }
+}

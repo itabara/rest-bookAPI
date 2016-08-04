@@ -3,6 +3,24 @@
  */
 var bookController = function(Book){
 
+    /**
+    * @api {post} /book Create a new Book
+    * @apiVersion 1.0.0
+    * @apiName PostBook
+    * @apiGroup Book
+    *
+    * @apiExample Example usage:
+    *     endpoint: http://localhost:3000/api/book
+    *
+    *     body:
+    *     {
+    *       "title": "RestAPI with Node.js",
+    *       "author": "IT"
+    *     }
+    *
+    * @apiSuccess {String} _id The new Book _id.
+    * @apiParam {String} title The book title.
+    */
     var post = function(req, res){
         var book = new Book(req.body);
 
@@ -16,12 +34,24 @@ var bookController = function(Book){
         }
     };
 
+    /**
+    * @api {get} /book/:book_id Retrieve a book by _id
+    * @apiVersion 1.0.0
+    * @apiName GetBook
+    * @apiGroup Book
+    *
+    *
+    * @apiExample Example usage:
+    *     endpoint: http://localhost:3000/api/book/:book_id
+    *
+    * @apiSuccess {String} _id The new Book _id.
+    * @apiParam {String} title The book title.
+    */
     var get = function(req, res){
         var query = {};
         if (req.query.genre){
             query.genre = req.query.genre;
         }
-
         Book.find(query, function(err, books){
             if (err){
                 res.status(500).send(err);
@@ -42,7 +72,7 @@ var bookController = function(Book){
     return {
         post: post,
         get: get
-    }
+    };
 }
 
 module.exports = bookController;

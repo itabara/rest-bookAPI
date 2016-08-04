@@ -6,6 +6,7 @@ var nodemon = require('gulp-nodemon');
 var gulpMocha = require('gulp-mocha');
 var env = require('gulp-env');
 var supertest = require('supertest');
+var apidoc = require('gulp-apidoc');
 
 
 gulp.task('default', function(){
@@ -15,7 +16,7 @@ gulp.task('default', function(){
        env: {
            PORT: 8000,
        },
-       ignore:['./node_modules/**']
+       ignore:["./node_modules/**", "./documentation/**"]
    }).on('restart', function(){
         console.log('Restarting');
     });
@@ -29,5 +30,13 @@ gulp.task('test', function(){
         .pipe(gulpMocha({reporter: 'nyan'}))
 });
 
-
-
+gulp.task('apidoc', function(done){
+          apidoc({
+            src: "./controllers",
+            dest: "./documentation",
+            options: {
+              excludeFilters: [ "node_modules" ]
+            },
+            debug:false
+          },done);
+});
